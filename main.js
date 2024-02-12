@@ -65,11 +65,21 @@ function populateScreen(event) {
 function operatorSelected(event) {
     const key = event.target;
 
-    operatorKeySelected = key
-    firstNumber = +screen.textContent;
-    operator = key.id;
-    key.classList.add("selected");
-    operatorIsSelected = true;
+    if (operator !== "") {
+        equalSelected()
+        operatorKeySelected = key
+        firstNumber = +screen.textContent;
+        secondNumber = ""
+        operator = key.id;
+        key.classList.add("selected");
+        operatorIsSelected = true;
+    } else {
+        operatorKeySelected = key
+        firstNumber = +screen.textContent;
+        operator = key.id;
+        key.classList.add("selected");
+        operatorIsSelected = true;
+    }
 }
 
 function equalSelected() {
