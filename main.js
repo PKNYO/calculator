@@ -18,6 +18,7 @@ let firstNumber = "0";
 let secondNumber = "";
 let operator = "";
 let operatorIsSelected = false;
+let isResult = false;
 let operatorKeySelected = ""
 
 // FUNCTION DECLARATION
@@ -39,6 +40,11 @@ function operate(a, b, operator) {
 
 function populateScreen(event) {
     const key = event.target;
+
+    if (isResult == true) {
+        screen.textContent = "";
+        isResult = false;
+    }
 
     if (secondNumber != "") {
         firstNumber = "";
@@ -83,6 +89,8 @@ function operatorSelected(event) {
 }
 
 function equalSelected() {   
+    if (firstNumber == "" || operator == "") return
+
     secondNumber = screen.textContent;
     let result = operate(Number(firstNumber), Number(secondNumber), operator)
     
@@ -91,6 +99,10 @@ function equalSelected() {
     }
 
     screen.textContent = result;
+    firstNumber = secondNumber;
+    secondNumber = "";
+    operator = "";
+    isResult = true;
 }
 
 function clearSelected() {
@@ -103,6 +115,8 @@ function clearSelected() {
 
 function signSelected() {
     let temp = screen.textContent;
+
+    if (operatorIsSelected == true) return
 
     if (temp.includes("-")) {
         screen.textContent = temp.slice(1);
