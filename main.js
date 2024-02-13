@@ -1,4 +1,4 @@
-// VARIABLE DECLARATION
+// letIABLE DECLARATION
 
 const add = function(a, b) {return a + b};
 const substract = function(a, b) {return a - b};
@@ -170,3 +170,7 @@ signButton.addEventListener("click", () => signSelected())
 comaButton.addEventListener("click", () => comaSelected())
 
 backButton.addEventListener("click", () => backSelected())
+
+
+// KEYBOARD EXTENSION : TO DO.
+
