@@ -12,6 +12,7 @@ const operatorButtons = document.querySelectorAll(".operator");
 const equalsButton = document.querySelector(".equals");
 const clearButton = document.querySelector(".clear")
 const signButton = document.querySelector(".sign-change")
+const comaButton = document.querySelector(".coma")
 const screen = document.querySelector(".screen");
 
 let firstNumber = "0";
@@ -19,6 +20,7 @@ let secondNumber = "";
 let operator = "";
 let operatorIsSelected = false;
 let isResult = false;
+let comaIsUsed = false;
 let operatorKeySelected = ""
 
 // FUNCTION DECLARATION
@@ -41,6 +43,13 @@ function operate(a, b, operator) {
 function populateScreen(event) {
     const key = event.target;
 
+    if (screen.textContent == "0" && key.textContent == ".") {
+        screen.textContent += key.textContent;
+        return
+    }
+
+    if (key.textContent == "." && comaIsUsed == true) return
+
     if (isResult == true) {
         screen.textContent = "";
         isResult = false;
@@ -53,7 +62,7 @@ function populateScreen(event) {
         screen.textContent = "";
     }
 
-    if (screen.textContent == 0) {
+    if (screen.textContent === "0") {
         screen.textContent = "";
     }
 
@@ -70,6 +79,8 @@ function populateScreen(event) {
 
 function operatorSelected(event) {
     const key = event.target;
+
+    comaIsUsed = false;
 
     if (operator !== "") {
         equalSelected()
@@ -125,6 +136,10 @@ function signSelected() {
     }
 }
 
+function comaSelected() {
+    comaIsUsed = true;
+}
+
 // EXECUTE PART
 
 digitButtons.forEach((button) => {
@@ -140,3 +155,6 @@ equalsButton.addEventListener("click", () => equalSelected())
 clearButton.addEventListener("click", () => clearSelected())
 
 signButton.addEventListener("click", () => signSelected())
+
+comaButton.addEventListener("click", () => comaSelected())
+
