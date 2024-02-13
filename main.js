@@ -82,9 +82,15 @@ function operatorSelected(event) {
     }
 }
 
-function equalSelected() {
+function equalSelected() {   
     secondNumber = screen.textContent;
-    screen.textContent = operate(+firstNumber, +secondNumber, operator)
+    let result = operate(Number(firstNumber), Number(secondNumber), operator)
+    
+    if ((result % 1) !== 0) {
+        result = result.toFixed(2);
+    }
+
+    screen.textContent = result;
 }
 
 function clearSelected() {
