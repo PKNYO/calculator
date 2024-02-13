@@ -13,6 +13,7 @@ const equalsButton = document.querySelector(".equals");
 const clearButton = document.querySelector(".clear")
 const signButton = document.querySelector(".sign-change")
 const comaButton = document.querySelector(".coma")
+const backButton = document.querySelector(".back")
 const screen = document.querySelector(".screen");
 
 let firstNumber = "0";
@@ -106,7 +107,7 @@ function equalSelected() {
     let result = operate(Number(firstNumber), Number(secondNumber), operator)
     
     if ((result % 1) !== 0) {
-        result = result.toFixed(2);
+        result = result.toFixed(1);
     }
 
     screen.textContent = result;
@@ -140,6 +141,16 @@ function comaSelected() {
     comaIsUsed = true;
 }
 
+function backSelected() {
+    const numberLength = screen.textContent.length
+    let temp = screen.textContent
+                                .split("")
+                                .slice(0, numberLength - 1)
+                                .join("")
+
+    screen.textContent = temp;
+}
+
 // EXECUTE PART
 
 digitButtons.forEach((button) => {
@@ -158,3 +169,4 @@ signButton.addEventListener("click", () => signSelected())
 
 comaButton.addEventListener("click", () => comaSelected())
 
+backButton.addEventListener("click", () => backSelected())
